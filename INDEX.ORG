@@ -1,0 +1,11 @@
+#+TITLE: BLOG
+
+ME:
+
+[[file:ABOUT.ORG][ABOUT]]
+
+FORTH:
+
+
+MCU:
+
