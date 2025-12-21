@@ -6,7 +6,7 @@
 <!-- 2025-12-21 Sun 15:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,34 +196,129 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="outline-container-org3fe0176" class="outline-2">
+<h2 id="org3fe0176">EMACS &amp; ESP-IDF</h2>
+<div class="outline-text-2" id="text-org3fe0176">
 <p>
-ME:
+VSCODE IS TOO SLOW ON MY MACHINE, SO I USE GNU EMACS
+</p>
+</div>
+<div id="outline-container-org5302b0f" class="outline-3">
+<h3 id="org5302b0f">INSTALL ESP-IDF</h3>
+<div class="outline-text-3" id="text-org5302b0f">
+<p>
+<a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/linux-macos-setup.html">https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/linux-macos-setup.html</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgc9a7da9" class="outline-3">
+<h3 id="orgc9a7da9">INSTALL EMACS PLUGIN</h3>
+<div class="outline-text-3" id="text-orgc9a7da9">
+<ul class="org-ul">
+<li>EGLOT</li>
+<li>COMPANY</li>
+</ul>
+
+<p>
+EGLOT HAS ALREADY INCLUDED IN THE LATEST VERSION OF GNU EMACS
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">M-x package-install company
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc9667b0" class="outline-3">
+<h3 id="orgc9667b0">EDIT EMACS CONFIG FILE</h3>
+<div class="outline-text-3" id="text-orgc9667b0">
+<p>
+ADD:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">(require 'eglot)
+(add-to-list 'eglot-server-programs
+             '((c++-mode c-mode) .
+               ("clangd" "--query-driver=**" "--header-insertion=never")))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c-mode-hook 'company-mode)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbf14dfe" class="outline-3">
+<h3 id="orgbf14dfe">CREATE ESP-IDF PROJECT</h3>
+<div class="outline-text-3" id="text-orgbf14dfe">
+<div class="org-src-container">
+<pre class="src src-shell">cd /path/to/esp-idf/
+. export.sh
+cd /xxx/xxx
+idf.py create-project hello
+cd hello
+idf.py set-target esp32xx
+idf.py build
+idf.py flash -p /dev/ttyACMX
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f78afd" class="outline-3">
+<h3 id="org3f78afd">ADD CLANGD CONFIG FILE</h3>
+<div class="outline-text-3" id="text-org3f78afd">
+<p>
+WE NEED FIX CLANGD TO WORK IN A CROSS COMPILATION ENVIRONMENT
 </p>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+ADD .clangd ON PROJECT ROOT:
 </p>
 
-<p>
-FORTH:
-</p>
+<div class="org-src-container">
+<pre class="src src-nil">CompileFlags:
+  Add: -Wno-unknown-warning-option
+  Remove: [-m*, -f*]
+Diagnostics:
+  UnusedIncludes: None
+CompileFlags:
+  BuiltinHeaders: QueryDriver
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb835fd7" class="outline-3">
+<h3 id="orgb835fd7">LINK compile<sub>commands.json</sub></h3>
+<div class="outline-text-3" id="text-orgb835fd7">
+<div class="org-src-container">
+<pre class="src src-shell">cd hello/
+ln -sf build/compile_commands.json .
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2a5e8f1" class="outline-3">
+<h3 id="org2a5e8f1">USE EMACS</h3>
+<div class="outline-text-3" id="text-org2a5e8f1">
+<div class="org-src-container">
+<pre class="src src-shell">cd hello/
+emacs main/hello.c
+</pre>
+</div>
 
 <p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
+THEN TYPE 'prin' TO TEST EGLOT AND COMPANY WORKING
 </p>
-
+</div>
+</div>
+<div id="outline-container-orgc5fa2e0" class="outline-3">
+<h3 id="orgc5fa2e0">EXAMPLE</h3>
+<div class="outline-text-3" id="text-orgc5fa2e0">
 <p>
-MCU:
+<a href="https://github.com/EBREAK/esp32-hello">https://github.com/EBREAK/esp32-hello</a>
 </p>
-
-<p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
-</p>
-
-<p>
-LINUX:
-</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: LuHui (<a href="mailto:luhux@foxmail.com">luhux@foxmail.com</a>)</p>

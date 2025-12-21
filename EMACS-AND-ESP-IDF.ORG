@@ -1,0 +1,80 @@
+* EMACS & ESP-IDF
+
+VSCODE IS TOO SLOW ON MY MACHINE, SO I USE GNU EMACS
+
+** INSTALL ESP-IDF
+
+https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/linux-macos-setup.html
+
+** INSTALL EMACS PLUGIN
+
+- EGLOT
+- COMPANY
+
+EGLOT HAS ALREADY INCLUDED IN THE LATEST VERSION OF GNU EMACS
+
+#+BEGIN_SRC
+  M-x package-install company
+#+END_SRC
+
+** EDIT EMACS CONFIG FILE
+
+ADD:
+
+#+BEGIN_SRC
+(require 'eglot)
+(add-to-list 'eglot-server-programs
+             '((c++-mode c-mode) .
+               ("clangd" "--query-driver=**" "--header-insertion=never")))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c-mode-hook 'company-mode)
+#+END_SRC
+
+** CREATE ESP-IDF PROJECT
+
+#+BEGIN_SRC shell
+  cd /path/to/esp-idf/
+  . export.sh
+  cd /xxx/xxx
+  idf.py create-project hello
+  cd hello
+  idf.py set-target esp32xx
+  idf.py build
+  idf.py flash -p /dev/ttyACMX
+#+END_SRC
+
+** ADD CLANGD CONFIG FILE
+
+WE NEED FIX CLANGD TO WORK IN A CROSS COMPILATION ENVIRONMENT
+
+ADD .clangd ON PROJECT ROOT:
+
+#+BEGIN_SRC 
+CompileFlags:
+  Add: -Wno-unknown-warning-option
+  Remove: [-m*, -f*]
+Diagnostics:
+  UnusedIncludes: None
+CompileFlags:
+  BuiltinHeaders: QueryDriver
+#+END_SRC
+
+** LINK compile_commands.json
+
+#+BEGIN_SRC shell
+  cd hello/
+  ln -sf build/compile_commands.json .
+#+END_SRC
+
+** USE EMACS
+
+#+BEGIN_SRC shell
+  cd hello/
+  emacs main/hello.c
+#+END_SRC
+
+THEN TYPE 'prin' TO TEST EGLOT AND COMPANY WORKING
+
+** EXAMPLE
+
+https://github.com/EBREAK/esp32-hello
