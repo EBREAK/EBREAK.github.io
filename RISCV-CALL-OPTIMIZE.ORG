@@ -20,7 +20,7 @@
 ** REGISTER RELATED CALL
 
 #+BEGIN_SRC asm
-  # RANGE: REG +-1MiB
+  # RANGE: REG +-2KiB
   # NEED 4 BYTES
   jalr x1, reg, offset
 #+END_SRC
