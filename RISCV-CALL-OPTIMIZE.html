@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-21 Sun 11:38 -->
+<!-- 2025-12-21 Sun 12:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,14 +196,79 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="outline-container-orge0179ba" class="outline-2">
+<h2 id="orge0179ba">RISCV CALL OPTIMIZE</h2>
+<div class="outline-text-2" id="text-orge0179ba">
+</div>
+<div id="outline-container-org5af79de" class="outline-3">
+<h3 id="org5af79de">FAR CALL</h3>
+<div class="outline-text-3" id="text-org5af79de">
+<div class="org-src-container">
+<pre class="src src-asm"># RANGE: PC +-2GiB
+# NEED 8 BYTES
+auipc x1, offset[31:12]
+jalr x1, x1, offset[11:0]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org74b07d1" class="outline-3">
+<h3 id="org74b07d1">NEARBY CALL</h3>
+<div class="outline-text-3" id="text-org74b07d1">
+<div class="org-src-container">
+<pre class="src src-asm"># RANGE: PC +-1MiB
+# NEED 4 BYTES
+jal x1, offset
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org54d6cbe" class="outline-3">
+<h3 id="org54d6cbe">REGISTER RELATED CALL</h3>
+<div class="outline-text-3" id="text-org54d6cbe">
+<div class="org-src-container">
+<pre class="src src-asm"># RANGE: REG +-1MiB
+# NEED 4 BYTES
+jalr x1, reg, offset
+</pre>
+</div>
+
 <p>
-ME:
+WE CAN USE A LOT OF GLOBAL POINTER REGISTERS TO OPTIMIZE LONG CALL INTO REGISTER RELATED CALL
 </p>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+BUT GNU GAS IS NOT SUPPORT THIS ACTION, WE MUST WRITE OWN ASSEMBLER
 </p>
+</div>
+</div>
+<div id="outline-container-orge033c5d" class="outline-3">
+<h3 id="orge033c5d">COMPRESSED NEARLY CALL</h3>
+<div class="outline-text-3" id="text-orge033c5d">
+<div class="org-src-container">
+<pre class="src src-asm"># RANGE: PC +-2KiB
+# NEED 2 BYTES
+c.jal (offset &lt;&lt; 1)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org11e9cdd" class="outline-3">
+<h3 id="org11e9cdd">COMPRESSED REGISTER RELATED CALL</h3>
+<div class="outline-text-3" id="text-org11e9cdd">
+<div class="org-src-container">
+<pre class="src src-asm"># RANGE: REG +-0
+# NEED 2 BYTES
+c.jalr reg
+</pre>
+</div>
+
+<p>
+SAME WITH: 'JALR x1, reg, 0'
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: LuHui (<a href="mailto:luhux@foxmail.com">luhux@foxmail.com</a>)</p>
