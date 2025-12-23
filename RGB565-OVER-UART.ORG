@@ -1,0 +1,39 @@
+* RGB565 OVER UART
+
+** CONNECT
+
+#+BEGIN_SRC
+  [ SENDER ] UART TX ------------> UART RX [ RECEIVER ]---[SCREEN]
+#+END_SRC
+
+** PROTOCOL
+
+USE SLIP:
+
+https://www.rfc-editor.org/rfc/rfc1055.html
+
+USE SLIP PACK THE FRAME:
+
+#+BEGIN_SRC
+  [OPCODE 8BIT][OFFSET LOW8BIT][OFFSET HIGH8BIT][ LCD DATA ....... ]
+     0x01         0xNN             0xNN            0xNN .. 0xNN
+#+END_SRC
+
+RECEIVER WILL COPY LCD DATA TO LCD FRAMEBUFFER + OFFSET
+
+** LIMIT
+
+HIGH SPEED UART NEED A STABLE CLOCK SOURCE
+
+WE NEED RUN SENDER IN LOOP, TO AVOID NOISE AND FIFO OVERFLOW
+
+** COMPRESS
+
+I SUGGEST YOU USE LZ4 BLOCK FORMAT:
+
+USE lz4len CHECK THE DATA AND USE lz4cpy TO DECOMPRESS INTO FRAMEBUFFER, OR YOU CAN MODIFY lz4cpy TO LIMIT THE OUTPUT POINTER
+
+https://github.com/jart/cosmopolitan/blob/master/libc/str/lz4len.c
+
+https://github.com/jart/cosmopolitan/blob/master/libc/str/lz4cpy.c
+

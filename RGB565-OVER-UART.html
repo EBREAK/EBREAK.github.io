@@ -6,7 +6,7 @@
 <!-- 2025-12-23 Tue 21:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,38 +196,78 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="outline-container-org3ae47bb" class="outline-2">
+<h2 id="org3ae47bb">RGB565 OVER UART</h2>
+<div class="outline-text-2" id="text-org3ae47bb">
+</div>
+<div id="outline-container-org41644f8" class="outline-3">
+<h3 id="org41644f8">CONNECT</h3>
+<div class="outline-text-3" id="text-org41644f8">
+<div class="org-src-container">
+<pre class="src src-nil">[ SENDER ] UART TX ------------&gt; UART RX [ RECEIVER ]---[SCREEN]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgea39718" class="outline-3">
+<h3 id="orgea39718">PROTOCOL</h3>
+<div class="outline-text-3" id="text-orgea39718">
 <p>
-ME:
+USE SLIP:
 </p>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+<a href="https://www.rfc-editor.org/rfc/rfc1055.html">https://www.rfc-editor.org/rfc/rfc1055.html</a>
 </p>
 
 <p>
-FORTH:
+USE SLIP PACK THE FRAME:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">[OPCODE 8BIT][OFFSET LOW8BIT][OFFSET HIGH8BIT][ LCD DATA ....... ]
+   0x01         0xNN             0xNN            0xNN .. 0xNN
+</pre>
+</div>
+
+<p>
+RECEIVER WILL COPY LCD DATA TO LCD FRAMEBUFFER + OFFSET
+</p>
+</div>
+</div>
+<div id="outline-container-org130e074" class="outline-3">
+<h3 id="org130e074">LIMIT</h3>
+<div class="outline-text-3" id="text-org130e074">
+<p>
+HIGH SPEED UART NEED A STABLE CLOCK SOURCE
 </p>
 
 <p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
+WE NEED RUN SENDER IN LOOP, TO AVOID NOISE AND FIFO OVERFLOW
+</p>
+</div>
+</div>
+<div id="outline-container-orgc61e8b7" class="outline-3">
+<h3 id="orgc61e8b7">COMPRESS</h3>
+<div class="outline-text-3" id="text-orgc61e8b7">
+<p>
+I SUGGEST YOU USE LZ4 BLOCK FORMAT:
 </p>
 
 <p>
-MCU:
+USE lz4len CHECK THE DATA AND USE lz4cpy TO DECOMPRESS INTO FRAMEBUFFER, OR YOU CAN MODIFY lz4cpy TO LIMIT THE OUTPUT POINTER
 </p>
 
 <p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
+<a href="https://github.com/jart/cosmopolitan/blob/master/libc/str/lz4len.c">https://github.com/jart/cosmopolitan/blob/master/libc/str/lz4len.c</a>
 </p>
 
 <p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
+<a href="https://github.com/jart/cosmopolitan/blob/master/libc/str/lz4cpy.c">https://github.com/jart/cosmopolitan/blob/master/libc/str/lz4cpy.c</a>
 </p>
-
-<p>
-LINUX:
-</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: LuHui (<a href="mailto:luhux@foxmail.com">luhux@foxmail.com</a>)</p>
