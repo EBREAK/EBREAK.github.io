@@ -6,7 +6,7 @@
 <!-- 2026-01-03 Sat 10:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,42 +196,60 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="outline-container-orgd6d038d" class="outline-2">
+<h2 id="orgd6d038d">WRITE A RISCV ASSEMBLER</h2>
+<div class="outline-text-2" id="text-orgd6d038d">
+</div>
+<div id="outline-container-org7e15a27" class="outline-3">
+<h3 id="org7e15a27">INSTRUCTION ENCODER</h3>
+<div class="outline-text-3" id="text-org7e15a27">
+<div class="org-src-container">
+<pre class="src src-forth">U-TYPE ( IMM RD OPCDOE -- INST )
+J-TYPE ( IMM RD OPCODE -- INST )
+I-TYPE ( IMM RS1 RD FUNCT3 OPCODE -- INST )
+S-TYPE ( IMM RS2 RS1 FUNCT3 OPCODE -- INST )
+B-TYPE ( IMM RS2 RS1 FUNCT3 OPCODE -- INST )
+R-TYPE ( FUNCT7 RS2 RS1 FUNCT3 RD OPCODE -- INST )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd8caf3b" class="outline-3">
+<h3 id="orgd8caf3b">INSTRUCTION</h3>
+<div class="outline-text-3" id="text-orgd8caf3b">
+<div class="org-src-container">
+<pre class="src src-forth">: LUI, ( IMM RD -- ) $37 U-TYPE L, ;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org97b9659" class="outline-3">
+<h3 id="org97b9659">INSTRCUTION DECODER</h3>
+<div class="outline-text-3" id="text-org97b9659">
+<div class="org-src-container">
+<pre class="src src-forth">DIS-U-TYPE ( INST -- IMM RD OPCDOE )
+DIS-J-TYPE ( INST -- IMM RD OPCODE )
+DIS-I-TYPE ( INST -- IMM RS1 RD FUNCT3 OPCODE )
+DIS-S-TYPE ( INST -- IMM RS2 RS1 FUNCT3 OPCODE )
+DIS-B-TYPE ( INST -- IMM RS2 RS1 FUNCT3 OPCODE )
+DIS-R-TYPE ( INST -- FUNCT7 RS2 RS1 FUNCT3 RD OPCODE )
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1f28385" class="outline-3">
+<h3 id="org1f28385">HOW TO TEST</h3>
+<div class="outline-text-3" id="text-org1f28385">
 <p>
-ME:
+USE INSTRUCTION ENCODER GENERATE DATA, THEN USE GNU GAS GENERATE TEST RESULT, COMPARE OUTPUT
 </p>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+USE INSTRUCTION ENCODER GENERATE DATA, THEN USE INSTRUCTION DECODER DEOCDE IT, COMPARE INPUT
 </p>
-
-<p>
-FORTH:
-</p>
-
-<p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
-</p>
-
-<p>
-<a href="WRITE-A-RISCV-ASSEMBLER.html">WRITE-A-RISCV-ASSEMBLER</a>
-</p>
-
-<p>
-MCU:
-</p>
-
-<p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
-</p>
-
-<p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
-</p>
-
-<p>
-LINUX:
-</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: LuHui (<a href="mailto:luhux@foxmail.com">luhux@foxmail.com</a>)</p>
