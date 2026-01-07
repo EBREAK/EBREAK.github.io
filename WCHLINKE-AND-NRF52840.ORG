@@ -1,0 +1,71 @@
+* WCHLINKE AND NRF52840
+
+USE WCHLINKE FLASH NRF52840
+
+** CONNECT
+
+#+BEGIN_SRC
+[          ] SWIO <-----> SWIO [          ]
+[ WCHLINKE ] SWCK <-----> SWCK [ NRF52840 ]
+[          ] GND  <----->  GND [          ]
+#+END_SRC
+
+
+** SWITCH WCHLINKE TO DAP MODE
+
+https://github.com/ch32-rs/wlink
+
+#+BEGIN_SRC shell
+  wlink switch-mode --dap
+#+END_SRC
+
+** OPENCODE CONFIG FILE
+
+wchlinke.cfg
+
+#+BEGIN_SRC
+adapter driver cmsis-dap
+transport select swd
+adapter speed 1000
+#+END_SRC
+
+** START OPENOCD
+
+#+BEGIN_SRC shell
+  openocd-wch -f wchlinke.cfg -f target/nrf52.cfg
+#+END_SRC
+
+OUTPUT:
+
+#+BEGIN_SRC
+Open On-Chip Debugger 0.11.0+dev-02415-gfad123a16-dirty (2024-11-20-13:09)
+Licensed under GNU GPL v2
+For bug reports, read
+	http://openocd.org/doc/doxygen/bugs.html
+adapter speed: 1000 kHz
+
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : Using CMSIS-DAPv2 interface with VID:PID=0x1a86:0x8012, serial=FE5A8F06832D
+Info : CMSIS-DAP: SWD supported
+Info : CMSIS-DAP: JTAG supported
+Info : CMSIS-DAP: FW Version = 2.0.0
+Info : CMSIS-DAP: Interface Initialised (SWD)
+Info : SWCLK/TCK = 1 SWDIO/TMS = 1 TDI = 0 TDO = 0 nTRST = 0 nRESET = 0
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 1000 kHz
+Info : SWD DPIDR 0x2ba01477
+Info : [nrf52.cpu] Cortex-M4 r0p1 processor detected
+Info : [nrf52.cpu] target has 6 breakpoints, 4 watchpoints
+[nrf52.cpu] Target successfully examined.
+Info : starting gdb server for nrf52.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+#+END_SRC
+
+
+** USE GDB CONNECT IT
+
+#+BEGIN_SRC
+  target remote localhost:3333
+#+END_SRC
+

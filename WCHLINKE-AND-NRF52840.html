@@ -6,7 +6,7 @@
 <!-- 2026-01-07 Wed 22:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,46 +196,101 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="outline-container-org9a51ffb" class="outline-2">
+<h2 id="org9a51ffb">WCHLINKE AND NRF52840</h2>
+<div class="outline-text-2" id="text-org9a51ffb">
 <p>
-ME:
+USE WCHLINKE FLASH NRF52840
+</p>
+</div>
+<div id="outline-container-orgf4bde3c" class="outline-3">
+<h3 id="orgf4bde3c">CONNECT</h3>
+<div class="outline-text-3" id="text-orgf4bde3c">
+<div class="org-src-container">
+<pre class="src src-nil">[          ] SWIO &lt;-----&gt; SWIO [          ]
+[ WCHLINKE ] SWCK &lt;-----&gt; SWCK [ NRF52840 ]
+[          ] GND  &lt;-----&gt;  GND [          ]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6f212b5" class="outline-3">
+<h3 id="org6f212b5">SWITCH WCHLINKE TO DAP MODE</h3>
+<div class="outline-text-3" id="text-org6f212b5">
+<p>
+<a href="https://github.com/ch32-rs/wlink">https://github.com/ch32-rs/wlink</a>
 </p>
 
+<div class="org-src-container">
+<pre class="src src-shell">wlink switch-mode --dap
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7e04fed" class="outline-3">
+<h3 id="org7e04fed">OPENCODE CONFIG FILE</h3>
+<div class="outline-text-3" id="text-org7e04fed">
 <p>
-<a href="ABOUT.html">ABOUT</a>
+wchlinke.cfg
 </p>
 
-<p>
-FORTH:
-</p>
+<div class="org-src-container">
+<pre class="src src-nil">adapter driver cmsis-dap
+transport select swd
+adapter speed 1000
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orge53fbc1" class="outline-3">
+<h3 id="orge53fbc1">START OPENOCD</h3>
+<div class="outline-text-3" id="text-orge53fbc1">
+<div class="org-src-container">
+<pre class="src src-shell">openocd-wch -f wchlinke.cfg -f target/nrf52.cfg
+</pre>
+</div>
 
 <p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
+OUTPUT:
 </p>
 
-<p>
-<a href="WRITE-A-RISCV-ASSEMBLER.html">WRITE-A-RISCV-ASSEMBLER</a>
-</p>
+<div class="org-src-container">
+<pre class="src src-nil">Open On-Chip Debugger 0.11.0+dev-02415-gfad123a16-dirty (2024-11-20-13:09)
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+adapter speed: 1000 kHz
 
-<p>
-MCU:
-</p>
-
-<p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
-</p>
-
-<p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
-</p>
-
-<p>
-<a href="WCHLINKE-AND-NRF52840.html">WCHLINKE-AND-NRF52840.ORG</a>
-</p>
-
-<p>
-LINUX:
-</p>
+Info : Listening on port 6666 for tcl connections
+Info : Listening on port 4444 for telnet connections
+Info : Using CMSIS-DAPv2 interface with VID:PID=0x1a86:0x8012, serial=FE5A8F06832D
+Info : CMSIS-DAP: SWD supported
+Info : CMSIS-DAP: JTAG supported
+Info : CMSIS-DAP: FW Version = 2.0.0
+Info : CMSIS-DAP: Interface Initialised (SWD)
+Info : SWCLK/TCK = 1 SWDIO/TMS = 1 TDI = 0 TDO = 0 nTRST = 0 nRESET = 0
+Info : CMSIS-DAP: Interface ready
+Info : clock speed 1000 kHz
+Info : SWD DPIDR 0x2ba01477
+Info : [nrf52.cpu] Cortex-M4 r0p1 processor detected
+Info : [nrf52.cpu] target has 6 breakpoints, 4 watchpoints
+[nrf52.cpu] Target successfully examined.
+Info : starting gdb server for nrf52.cpu on 3333
+Info : Listening on port 3333 for gdb connections
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org524be3b" class="outline-3">
+<h3 id="org524be3b">USE GDB CONNECT IT</h3>
+<div class="outline-text-3" id="text-org524be3b">
+<div class="org-src-container">
+<pre class="src src-nil">target remote localhost:3333
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: LuHui (<a href="mailto:luhux@foxmail.com">luhux@foxmail.com</a>)</p>
