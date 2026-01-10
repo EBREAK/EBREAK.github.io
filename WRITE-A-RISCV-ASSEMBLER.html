@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-03 Sat 10:40 -->
+<!-- 2026-01-10 Sat 12:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -247,6 +247,46 @@ USE INSTRUCTION ENCODER GENERATE DATA, THEN USE GNU GAS GENERATE TEST RESULT, CO
 <p>
 USE INSTRUCTION ENCODER GENERATE DATA, THEN USE INSTRUCTION DECODER DEOCDE IT, COMPARE INPUT
 </p>
+</div>
+</div>
+<div id="outline-container-orge0ca07e" class="outline-3">
+<h3 id="orge0ca07e">GAS</h3>
+<div class="outline-text-3" id="text-orge0ca07e">
+<p>
+I USE GAS TO GENERATE TEST PATTERN, BUT GAS HAVE SOME OPTIMIZE FOR BRANCH INSTRUCTION:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm">beq x0, x0, 0
+</pre>
+</div>
+
+<p>
+WILL GENERATE:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">f4:   00001463                bnez    zero,fc &lt;.text+0xfc&gt;
+f8:   0000006f                j       f8 &lt;.text+0xf8&gt;
+</pre>
+</div>
+
+<p>
+SO I SWITCH TO 'llvm-mc' GENERATE SINGLE BRANCH INSTRUCTION
+</p>
+</div>
+</div>
+<div id="outline-container-orge3486b8" class="outline-3">
+<h3 id="orge3486b8">LLVM-MC</h3>
+<div class="outline-text-3" id="text-orge3486b8">
+<p>
+COMMAND:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">llvm-mc -triple=riscv32 -filetype=obj test.S -o a.out
+</pre>
+</div>
 </div>
 </div>
 </div>
