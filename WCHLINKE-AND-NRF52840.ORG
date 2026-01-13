@@ -29,7 +29,20 @@ transport select swd
 adapter speed 1000
 #+END_SRC
 
-** START OPENOCD
+
+** USE PYOCD
+
+NRF CONNECT SDK ONLY SUPPORT JLINK AND PYOCD:
+
+FLASH IS NOT WORKING, I CAN'T FOUND REASON
+
+DEBUG IS WORKING, WE CAN USE DEBUG RUN FIRMWARE:
+
+#+BEGIN_SRC shell
+  west debug -r pyocd
+#+END_SRC
+
+** USE OPENOCD
 
 #+BEGIN_SRC shell
   openocd-wch -f wchlinke.cfg -f target/nrf52.cfg

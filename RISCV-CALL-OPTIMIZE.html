@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-23 Tue 21:35 -->
+<!-- 2026-01-13 Tue 21:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -207,6 +207,18 @@
 <pre class="src src-asm"># RANGE: PC +-2GiB
 # NEED 8 BYTES
 auipc x1, offset[31:12]
+jalr x1, x1, offset[11:0]
+</pre>
+</div>
+
+<p>
+OR
+</p>
+
+<div class="org-src-container">
+<pre class="src src-asm"># RANGE: 0GiB ~ 4GiB
+# NEED 8 BYTES
+lui x1, offset[31:12]
 jalr x1, x1, offset[11:0]
 </pre>
 </div>

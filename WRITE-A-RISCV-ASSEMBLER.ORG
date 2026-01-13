@@ -58,3 +58,9 @@ COMMAND:
 #+BEGIN_SRC shell
   llvm-mc -triple=riscv32 -filetype=obj test.S -o a.out
 #+END_SRC
+
+** FAR CALL
+
+
+
+

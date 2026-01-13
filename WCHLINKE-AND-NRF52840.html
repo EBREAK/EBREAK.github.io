@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-07 Wed 22:32 -->
+<!-- 2026-01-13 Tue 21:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -242,9 +242,30 @@ adapter speed 1000
 </div>
 </div>
 </div>
-<div id="outline-container-orge53fbc1" class="outline-3">
-<h3 id="orge53fbc1">START OPENOCD</h3>
-<div class="outline-text-3" id="text-orge53fbc1">
+<div id="outline-container-org40b3397" class="outline-3">
+<h3 id="org40b3397">USE PYOCD</h3>
+<div class="outline-text-3" id="text-org40b3397">
+<p>
+NRF CONNECT SDK ONLY SUPPORT JLINK AND PYOCD:
+</p>
+
+<p>
+FLASH IS NOT WORKING, I CAN'T FOUND REASON
+</p>
+
+<p>
+DEBUG IS WORKING, WE CAN USE DEBUG RUN FIRMWARE:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">west debug -r pyocd
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org1a3d0df" class="outline-3">
+<h3 id="org1a3d0df">USE OPENOCD</h3>
+<div class="outline-text-3" id="text-org1a3d0df">
 <div class="org-src-container">
 <pre class="src src-shell">openocd-wch -f wchlinke.cfg -f target/nrf52.cfg
 </pre>
