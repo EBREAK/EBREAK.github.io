@@ -1,0 +1,107 @@
+* MAKE RISCV STC FORTH SMALL
+
+** REGISTER
+
+| FORTH REG NAME | RISCV REG NAME          | REASON                                          |
+|----------------+-------------------------+-------------------------------------------------|
+| TOS            | X15                     | IT CAN OPTIMIZE BY RISCV COMPRESSED INSTRUCTION |
+| RSP            | X8                      | SAME WITH TOS                                   |
+| PSP            | X9                      | SAME WITH TOS                                   |
+| TMPX           | X10, X11, X12, X13, X14 | SAME WITH TOS                                   |
+
+** PPUSH
+
+#+BEGIN_SRC asm
+  .MACRO PPUSH reg
+  	addi x9, x9, -4
+  	sw \reg, 0(x9)
+  .ENDM
+  PPUSH x15
+  PPUSH x1
+#+END_SRC
+
+DISASM:
+
+#+BEGIN_SRC asm
+  426:   14f1                    addi    s1,s1,-4
+  428:   c09c                    sw      a5,0(s1)
+  42a:   14f1                    addi    s1,s1,-4
+  42c:   0014a023                sw      ra,0(s1)
+#+END_SRC
+
+** PPOP
+
+#+BEGIN_SRC asm
+  .MACRO PPOP reg
+  	lw \reg, 0(x9)
+  	addi x9, x9, 4
+  .ENDM
+  PPOP x1
+  PPOP x15
+#+END_SRC
+
+DISASM:
+
+#+BEGIN_SRC asm
+  430:   0004a083                lw      ra,0(s1)
+  434:   0491                    addi    s1,s1,4
+  436:   409c                    lw      a5,0(s1)
+  438:   0491                    addi    s1,s1,4
+
+#+END_SRC
+
+** RPUSH RPOP
+
+#+BEGIN_SRC asm
+  .MACRO RPUSH reg
+  	addi x8, x8, -4
+  	sw \reg, 0(x8)
+  .ENDM
+
+  .MACRO RPOP reg
+  	lw \reg, 0(x8)
+  	addi x8, x8, 4
+  .ENDM
+#+END_SRC
+
+** LIT
+
+#+BEGIN_SRC asm
+  .MACRO LIT val
+  	PPUSH x15
+  	li x15, \val
+  .ENDM
+  LIT 0x55AA
+#+END_SRC
+
+DISASM:
+
+#+BEGIN_SRC asm
+  43a:   14f1                    addi    s1,s1,-4
+  43c:   c09c                    sw      a5,0(s1)
+  43e:   6795                    lui     a5,0x5
+  440:   5aa78793                addi    a5,a5,1450 # 55aa
+#+END_SRC
+
+** ZBRANCH
+
+#+BEGIN_SRC asm
+    .MACRO ZBRANCH sym
+            mv x14, x15
+            PPOP x15
+            beqz x14, \sym
+    .ENDM
+    ZBRANCH 1f
+    nop
+  1:
+#+END_SRC
+
+DISASM:
+
+#+BEGIN_SRC asm
+  444:   873e                    mv      a4,a5
+  446:   409c                    lw      a5,0(s1)
+  448:   0491                    addi    s1,s1,4
+  44a:   c311                    beqz    a4,44e <main+0x4a>
+  44c:   0001                    nop
+#+END_SRC

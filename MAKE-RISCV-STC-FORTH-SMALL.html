@@ -6,7 +6,7 @@
 <!-- 2026-02-05 Thu 13:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -196,46 +196,183 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
-<p>
-ME:
-</p>
+<div id="outline-container-orgcb0a335" class="outline-2">
+<h2 id="orgcb0a335">MAKE RISCV STC FORTH SMALL</h2>
+<div class="outline-text-2" id="text-orgcb0a335">
+</div>
+<div id="outline-container-org0191fc6" class="outline-3">
+<h3 id="org0191fc6">REGISTER</h3>
+<div class="outline-text-3" id="text-org0191fc6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">FORTH REG NAME</th>
+<th scope="col" class="org-left">RISCV REG NAME</th>
+<th scope="col" class="org-left">REASON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">TOS</td>
+<td class="org-left">X15</td>
+<td class="org-left">IT CAN OPTIMIZE BY RISCV COMPRESSED INSTRUCTION</td>
+</tr>
+
+<tr>
+<td class="org-left">RSP</td>
+<td class="org-left">X8</td>
+<td class="org-left">SAME WITH TOS</td>
+</tr>
+
+<tr>
+<td class="org-left">PSP</td>
+<td class="org-left">X9</td>
+<td class="org-left">SAME WITH TOS</td>
+</tr>
+
+<tr>
+<td class="org-left">TMPX</td>
+<td class="org-left">X10, X11, X12, X13, X14</td>
+<td class="org-left">SAME WITH TOS</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org36ff04b" class="outline-3">
+<h3 id="org36ff04b">PPUSH</h3>
+<div class="outline-text-3" id="text-org36ff04b">
+<div class="org-src-container">
+<pre class="src src-asm">.MACRO PPUSH reg
+        addi x9, x9, -4
+        sw \reg, 0(x9)
+.ENDM
+PPUSH x15
+PPUSH x1
+</pre>
+</div>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+DISASM:
 </p>
 
-<p>
-FORTH:
-</p>
+<div class="org-src-container">
+<pre class="src src-asm">426:   14f1                    addi    s1,s1,-4
+428:   c09c                    sw      a5,0(s1)
+42a:   14f1                    addi    s1,s1,-4
+42c:   0014a023                sw      ra,0(s1)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgef79300" class="outline-3">
+<h3 id="orgef79300">PPOP</h3>
+<div class="outline-text-3" id="text-orgef79300">
+<div class="org-src-container">
+<pre class="src src-asm">.MACRO PPOP reg
+        lw \reg, 0(x9)
+        addi x9, x9, 4
+.ENDM
+PPOP x1
+PPOP x15
+</pre>
+</div>
 
 <p>
-<a href="MAKE-RISCV-STC-FORTH-SMALL.html">MAKE-RISCV-STC-FORTH-SMALL</a>
+DISASM:
 </p>
 
-<p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
-</p>
+<div class="org-src-container">
+<pre class="src src-asm">430:   0004a083                lw      ra,0(s1)
+434:   0491                    addi    s1,s1,4
+436:   409c                    lw      a5,0(s1)
+438:   0491                    addi    s1,s1,4
+
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4a9c3df" class="outline-3">
+<h3 id="org4a9c3df">RPUSH RPOP</h3>
+<div class="outline-text-3" id="text-org4a9c3df">
+<div class="org-src-container">
+<pre class="src src-asm">.MACRO RPUSH reg
+        addi x8, x8, -4
+        sw \reg, 0(x8)
+.ENDM
+
+.MACRO RPOP reg
+        lw \reg, 0(x8)
+        addi x8, x8, 4
+.ENDM
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8a48068" class="outline-3">
+<h3 id="org8a48068">LIT</h3>
+<div class="outline-text-3" id="text-org8a48068">
+<div class="org-src-container">
+<pre class="src src-asm">.MACRO LIT val
+        PPUSH x15
+        li x15, \val
+.ENDM
+LIT 0x55AA
+</pre>
+</div>
 
 <p>
-<a href="WRITE-A-RISCV-ASSEMBLER.html">WRITE-A-RISCV-ASSEMBLER</a>
+DISASM:
 </p>
 
-<p>
-MCU:
-</p>
+<div class="org-src-container">
+<pre class="src src-asm">43a:   14f1                    addi    s1,s1,-4
+43c:   c09c                    sw      a5,0(s1)
+43e:   6795                    lui     a5,0x5
+440:   5aa78793                addi    a5,a5,1450 # 55aa
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b5b774" class="outline-3">
+<h3 id="org2b5b774">ZBRANCH</h3>
+<div class="outline-text-3" id="text-org2b5b774">
+<div class="org-src-container">
+<pre class="src src-asm">  .MACRO ZBRANCH sym
+          mv x14, x15
+          PPOP x15
+          beqz x14, \sym
+  .ENDM
+  ZBRANCH 1f
+  nop
+1:
+</pre>
+</div>
 
 <p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
+DISASM:
 </p>
 
-<p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
-</p>
-
-<p>
-<a href="WCHLINKE-AND-NRF52840.html">WCHLINKE-AND-NRF52840</a>
-</p>
+<div class="org-src-container">
+<pre class="src src-asm">444:   873e                    mv      a4,a5
+446:   409c                    lw      a5,0(s1)
+448:   0491                    addi    s1,s1,4
+44a:   c311                    beqz    a4,44e &lt;main+0x4a&gt;
+44c:   0001                    nop
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>
