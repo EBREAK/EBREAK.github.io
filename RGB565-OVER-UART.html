@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-05 Thu 13:30 -->
+<!-- 2026-02-18 Wed 16:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -196,22 +196,22 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-orgc2c046c" class="outline-2">
-<h2 id="orgc2c046c">RGB565 OVER UART</h2>
-<div class="outline-text-2" id="text-orgc2c046c">
+<div id="outline-container-orge8532b1" class="outline-2">
+<h2 id="orge8532b1">RGB565 OVER UART</h2>
+<div class="outline-text-2" id="text-orge8532b1">
 </div>
-<div id="outline-container-org95362cf" class="outline-3">
-<h3 id="org95362cf">CONNECT</h3>
-<div class="outline-text-3" id="text-org95362cf">
+<div id="outline-container-org7e106bf" class="outline-3">
+<h3 id="org7e106bf">CONNECT</h3>
+<div class="outline-text-3" id="text-org7e106bf">
 <div class="org-src-container">
 <pre class="src src-nil">[ SENDER ] UART TX ------------&gt; UART RX [ RECEIVER ]---[SCREEN]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb2dda8" class="outline-3">
-<h3 id="orgeb2dda8">PROTOCOL</h3>
-<div class="outline-text-3" id="text-orgeb2dda8">
+<div id="outline-container-org0525cb3" class="outline-3">
+<h3 id="org0525cb3">PROTOCOL</h3>
+<div class="outline-text-3" id="text-org0525cb3">
 <p>
 USE SLIP:
 </p>
@@ -235,9 +235,9 @@ RECEIVER WILL COPY LCD DATA TO LCD FRAMEBUFFER + OFFSET
 </p>
 </div>
 </div>
-<div id="outline-container-org7e3a595" class="outline-3">
-<h3 id="org7e3a595">LIMIT</h3>
-<div class="outline-text-3" id="text-org7e3a595">
+<div id="outline-container-org752b249" class="outline-3">
+<h3 id="org752b249">LIMIT</h3>
+<div class="outline-text-3" id="text-org752b249">
 <p>
 HIGH SPEED UART NEED A STABLE CLOCK SOURCE
 </p>
@@ -247,9 +247,9 @@ WE NEED RUN SENDER IN LOOP, TO AVOID NOISE AND FIFO OVERFLOW
 </p>
 </div>
 </div>
-<div id="outline-container-orgac3c4b2" class="outline-3">
-<h3 id="orgac3c4b2">COMPRESS</h3>
-<div class="outline-text-3" id="text-orgac3c4b2">
+<div id="outline-container-org7899281" class="outline-3">
+<h3 id="org7899281">COMPRESS</h3>
+<div class="outline-text-3" id="text-org7899281">
 <p>
 I SUGGEST YOU USE LZ4 BLOCK FORMAT:
 </p>

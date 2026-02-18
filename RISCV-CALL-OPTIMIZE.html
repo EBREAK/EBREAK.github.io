@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-05 Thu 13:30 -->
+<!-- 2026-02-18 Wed 16:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -196,13 +196,13 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org7f5043d" class="outline-2">
-<h2 id="org7f5043d">RISCV CALL OPTIMIZE</h2>
-<div class="outline-text-2" id="text-org7f5043d">
+<div id="outline-container-org6c64dc3" class="outline-2">
+<h2 id="org6c64dc3">RISCV CALL OPTIMIZE</h2>
+<div class="outline-text-2" id="text-org6c64dc3">
 </div>
-<div id="outline-container-org2ee80e1" class="outline-3">
-<h3 id="org2ee80e1">FAR CALL</h3>
-<div class="outline-text-3" id="text-org2ee80e1">
+<div id="outline-container-org58d39c9" class="outline-3">
+<h3 id="org58d39c9">FAR CALL</h3>
+<div class="outline-text-3" id="text-org58d39c9">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: PC +-2GiB
 # NEED 8 BYTES
@@ -224,9 +224,9 @@ jalr x1, x1, offset[11:0]
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa2e646" class="outline-3">
-<h3 id="orgfa2e646">NEARBY CALL</h3>
-<div class="outline-text-3" id="text-orgfa2e646">
+<div id="outline-container-org9e511cb" class="outline-3">
+<h3 id="org9e511cb">NEARBY CALL</h3>
+<div class="outline-text-3" id="text-org9e511cb">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: PC +-1MiB
 # NEED 4 BYTES
@@ -235,9 +235,9 @@ jal x1, offset
 </div>
 </div>
 </div>
-<div id="outline-container-org477608d" class="outline-3">
-<h3 id="org477608d">REGISTER RELATED CALL</h3>
-<div class="outline-text-3" id="text-org477608d">
+<div id="outline-container-org02f2d5b" class="outline-3">
+<h3 id="org02f2d5b">REGISTER RELATED CALL</h3>
+<div class="outline-text-3" id="text-org02f2d5b">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: REG +-2KiB
 # NEED 4 BYTES
@@ -254,9 +254,9 @@ BUT GNU GAS IS NOT SUPPORT THIS ACTION, WE MUST WRITE OWN ASSEMBLER
 </p>
 </div>
 </div>
-<div id="outline-container-orgef4e1ff" class="outline-3">
-<h3 id="orgef4e1ff">COMPRESSED NEARLY CALL</h3>
-<div class="outline-text-3" id="text-orgef4e1ff">
+<div id="outline-container-orgbb8939e" class="outline-3">
+<h3 id="orgbb8939e">COMPRESSED NEARLY CALL</h3>
+<div class="outline-text-3" id="text-orgbb8939e">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: PC +-2KiB
 # NEED 2 BYTES
@@ -265,9 +265,9 @@ c.jal (offset &lt;&lt; 1)
 </div>
 </div>
 </div>
-<div id="outline-container-org879b86f" class="outline-3">
-<h3 id="org879b86f">COMPRESSED REGISTER RELATED CALL</h3>
-<div class="outline-text-3" id="text-org879b86f">
+<div id="outline-container-org3718d00" class="outline-3">
+<h3 id="org3718d00">COMPRESSED REGISTER RELATED CALL</h3>
+<div class="outline-text-3" id="text-org3718d00">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: REG +-0
 # NEED 2 BYTES
