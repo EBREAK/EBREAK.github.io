@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-18 Wed 16:10 -->
+<!-- 2026-02-19 周四 19:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -196,13 +196,13 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org657a6c0" class="outline-2">
-<h2 id="org657a6c0">WRITE A RISCV ASSEMBLER</h2>
-<div class="outline-text-2" id="text-org657a6c0">
+<div id="outline-container-org1ff622d" class="outline-2">
+<h2 id="org1ff622d">WRITE A RISCV ASSEMBLER</h2>
+<div class="outline-text-2" id="text-org1ff622d">
 </div>
-<div id="outline-container-org1cd995f" class="outline-3">
-<h3 id="org1cd995f">INSTRUCTION ENCODER</h3>
-<div class="outline-text-3" id="text-org1cd995f">
+<div id="outline-container-org807dba7" class="outline-3">
+<h3 id="org807dba7">INSTRUCTION ENCODER</h3>
+<div class="outline-text-3" id="text-org807dba7">
 <div class="org-src-container">
 <pre class="src src-forth">U-TYPE ( IMM RD OPCDOE -- INST )
 J-TYPE ( IMM RD OPCODE -- INST )
@@ -214,18 +214,18 @@ R-TYPE ( FUNCT7 RS2 RS1 FUNCT3 RD OPCODE -- INST )
 </div>
 </div>
 </div>
-<div id="outline-container-org1a678ac" class="outline-3">
-<h3 id="org1a678ac">INSTRUCTION</h3>
-<div class="outline-text-3" id="text-org1a678ac">
+<div id="outline-container-org3c945d9" class="outline-3">
+<h3 id="org3c945d9">INSTRUCTION</h3>
+<div class="outline-text-3" id="text-org3c945d9">
 <div class="org-src-container">
 <pre class="src src-forth">: LUI, ( IMM RD -- ) $37 U-TYPE L, ;
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org3af19db" class="outline-3">
-<h3 id="org3af19db">INSTRCUTION DECODER</h3>
-<div class="outline-text-3" id="text-org3af19db">
+<div id="outline-container-orgc89ec6c" class="outline-3">
+<h3 id="orgc89ec6c">INSTRCUTION DECODER</h3>
+<div class="outline-text-3" id="text-orgc89ec6c">
 <div class="org-src-container">
 <pre class="src src-forth">DIS-U-TYPE ( INST -- IMM RD OPCDOE )
 DIS-J-TYPE ( INST -- IMM RD OPCODE )
@@ -237,9 +237,9 @@ DIS-R-TYPE ( INST -- FUNCT7 RS2 RS1 FUNCT3 RD OPCODE )
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0b4ede" class="outline-3">
-<h3 id="orgc0b4ede">HOW TO TEST</h3>
-<div class="outline-text-3" id="text-orgc0b4ede">
+<div id="outline-container-orgba90087" class="outline-3">
+<h3 id="orgba90087">HOW TO TEST</h3>
+<div class="outline-text-3" id="text-orgba90087">
 <p>
 USE INSTRUCTION ENCODER GENERATE DATA, THEN USE GNU GAS GENERATE TEST RESULT, COMPARE OUTPUT
 </p>
@@ -249,9 +249,9 @@ USE INSTRUCTION ENCODER GENERATE DATA, THEN USE INSTRUCTION DECODER DEOCDE IT, C
 </p>
 </div>
 </div>
-<div id="outline-container-org292da37" class="outline-3">
-<h3 id="org292da37">GAS</h3>
-<div class="outline-text-3" id="text-org292da37">
+<div id="outline-container-orgeb37927" class="outline-3">
+<h3 id="orgeb37927">GAS</h3>
+<div class="outline-text-3" id="text-orgeb37927">
 <p>
 I USE GAS TO GENERATE TEST PATTERN, BUT GAS HAVE SOME OPTIMIZE FOR BRANCH INSTRUCTION:
 </p>
@@ -276,9 +276,9 @@ SO I SWITCH TO 'llvm-mc' GENERATE SINGLE BRANCH INSTRUCTION
 </p>
 </div>
 </div>
-<div id="outline-container-org143a6a4" class="outline-3">
-<h3 id="org143a6a4">LLVM-MC</h3>
-<div class="outline-text-3" id="text-org143a6a4">
+<div id="outline-container-org2f6ad43" class="outline-3">
+<h3 id="org2f6ad43">LLVM-MC</h3>
+<div class="outline-text-3" id="text-org2f6ad43">
 <p>
 COMMAND:
 </p>
@@ -289,13 +289,13 @@ COMMAND:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf7b5e73" class="outline-3">
-<h3 id="orgf7b5e73">FAR CALL</h3>
+<div id="outline-container-org86b8368" class="outline-3">
+<h3 id="org86b8368">FAR CALL</h3>
 </div>
 
-<div id="outline-container-orgdf21b74" class="outline-3">
-<h3 id="orgdf21b74">J TYPE ENCODING</h3>
-<div class="outline-text-3" id="text-orgdf21b74">
+<div id="outline-container-orgde69c6e" class="outline-3">
+<h3 id="orgde69c6e">J TYPE ENCODING</h3>
+<div class="outline-text-3" id="text-orgde69c6e">
 <div class="org-src-container">
 <pre class="src src-text">11111111111111110000000000000000
 FEDCBA9876543210FEDCBA9876543210
@@ -314,9 +314,9 @@ T                        E
 </div>
 </div>
 </div>
-<div id="outline-container-orgcea4814" class="outline-3">
-<h3 id="orgcea4814">CJ TYPE ENCODING</h3>
-<div class="outline-text-3" id="text-orgcea4814">
+<div id="outline-container-org781f00b" class="outline-3">
+<h3 id="org781f00b">CJ TYPE ENCODING</h3>
+<div class="outline-text-3" id="text-org781f00b">
 <div class="org-src-container">
 <pre class="src src-text">FEDCBA9876543210
 210B498A67321510

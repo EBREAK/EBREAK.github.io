@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-18 Wed 16:10 -->
+<!-- 2026-02-19 周四 19:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -196,24 +196,24 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org434a44d" class="outline-2">
-<h2 id="org434a44d">EMACS &amp; ESP-IDF</h2>
-<div class="outline-text-2" id="text-org434a44d">
+<div id="outline-container-org6e370ee" class="outline-2">
+<h2 id="org6e370ee">EMACS &amp; ESP-IDF</h2>
+<div class="outline-text-2" id="text-org6e370ee">
 <p>
 VSCODE IS TOO SLOW ON MY MACHINE, SO I USE GNU EMACS
 </p>
 </div>
-<div id="outline-container-org408fbcd" class="outline-3">
-<h3 id="org408fbcd">INSTALL ESP-IDF</h3>
-<div class="outline-text-3" id="text-org408fbcd">
+<div id="outline-container-org739a0ee" class="outline-3">
+<h3 id="org739a0ee">INSTALL ESP-IDF</h3>
+<div class="outline-text-3" id="text-org739a0ee">
 <p>
 <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/linux-macos-setup.html">https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/linux-macos-setup.html</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org8201810" class="outline-3">
-<h3 id="org8201810">INSTALL EMACS PLUGIN</h3>
-<div class="outline-text-3" id="text-org8201810">
+<div id="outline-container-org6fc4f37" class="outline-3">
+<h3 id="org6fc4f37">INSTALL EMACS PLUGIN</h3>
+<div class="outline-text-3" id="text-org6fc4f37">
 <ul class="org-ul">
 <li>EGLOT</li>
 <li>COMPANY</li>
@@ -229,9 +229,9 @@ EGLOT HAS ALREADY INCLUDED IN THE LATEST VERSION OF GNU EMACS
 </div>
 </div>
 </div>
-<div id="outline-container-org90b2681" class="outline-3">
-<h3 id="org90b2681">EDIT EMACS CONFIG FILE</h3>
-<div class="outline-text-3" id="text-org90b2681">
+<div id="outline-container-org116340a" class="outline-3">
+<h3 id="org116340a">EDIT EMACS CONFIG FILE</h3>
+<div class="outline-text-3" id="text-org116340a">
 <p>
 ADD:
 </p>
@@ -247,9 +247,9 @@ ADD:
 </div>
 </div>
 </div>
-<div id="outline-container-orged18881" class="outline-3">
-<h3 id="orged18881">CREATE ESP-IDF PROJECT</h3>
-<div class="outline-text-3" id="text-orged18881">
+<div id="outline-container-orga572788" class="outline-3">
+<h3 id="orga572788">CREATE ESP-IDF PROJECT</h3>
+<div class="outline-text-3" id="text-orga572788">
 <div class="org-src-container">
 <pre class="src src-shell">cd /path/to/esp-idf/
 . export.sh
@@ -263,9 +263,9 @@ idf.py flash -p /dev/ttyACMX
 </div>
 </div>
 </div>
-<div id="outline-container-org2c45513" class="outline-3">
-<h3 id="org2c45513">ADD CLANGD CONFIG FILE</h3>
-<div class="outline-text-3" id="text-org2c45513">
+<div id="outline-container-orgc381ee4" class="outline-3">
+<h3 id="orgc381ee4">ADD CLANGD CONFIG FILE</h3>
+<div class="outline-text-3" id="text-orgc381ee4">
 <p>
 WE NEED FIX CLANGD TO WORK IN A CROSS COMPILATION ENVIRONMENT
 </p>
@@ -286,9 +286,9 @@ CompileFlags:
 </div>
 </div>
 </div>
-<div id="outline-container-org1bb4051" class="outline-3">
-<h3 id="org1bb4051">LINK compile<sub>commands.json</sub></h3>
-<div class="outline-text-3" id="text-org1bb4051">
+<div id="outline-container-orgf29aa8e" class="outline-3">
+<h3 id="orgf29aa8e">LINK compile<sub>commands.json</sub></h3>
+<div class="outline-text-3" id="text-orgf29aa8e">
 <div class="org-src-container">
 <pre class="src src-shell">cd hello/
 ln -sf build/compile_commands.json .
@@ -296,9 +296,9 @@ ln -sf build/compile_commands.json .
 </div>
 </div>
 </div>
-<div id="outline-container-orgcb35206" class="outline-3">
-<h3 id="orgcb35206">USE EMACS</h3>
-<div class="outline-text-3" id="text-orgcb35206">
+<div id="outline-container-org40c34db" class="outline-3">
+<h3 id="org40c34db">USE EMACS</h3>
+<div class="outline-text-3" id="text-org40c34db">
 <div class="org-src-container">
 <pre class="src src-shell">cd hello/
 emacs main/hello.c
@@ -310,9 +310,9 @@ THEN TYPE 'prin' TO TEST EGLOT AND COMPANY WORKING
 </p>
 </div>
 </div>
-<div id="outline-container-orgdd2d0e9" class="outline-3">
-<h3 id="orgdd2d0e9">EXAMPLE</h3>
-<div class="outline-text-3" id="text-orgdd2d0e9">
+<div id="outline-container-orgd795400" class="outline-3">
+<h3 id="orgd795400">EXAMPLE</h3>
+<div class="outline-text-3" id="text-orgd795400">
 <p>
 <a href="https://github.com/EBREAK/esp32-hello">https://github.com/EBREAK/esp32-hello</a>
 </p>

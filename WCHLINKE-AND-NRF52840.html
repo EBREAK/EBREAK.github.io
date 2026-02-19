@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-18 Wed 16:10 -->
+<!-- 2026-02-19 周四 19:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -196,16 +196,16 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org2b81ef4" class="outline-2">
-<h2 id="org2b81ef4">WCHLINKE AND NRF52840</h2>
-<div class="outline-text-2" id="text-org2b81ef4">
+<div id="outline-container-org0154d06" class="outline-2">
+<h2 id="org0154d06">WCHLINKE AND NRF52840</h2>
+<div class="outline-text-2" id="text-org0154d06">
 <p>
 USE WCHLINKE FLASH/DEBUG NRF52840
 </p>
 </div>
-<div id="outline-container-org5d5c4ce" class="outline-3">
-<h3 id="org5d5c4ce">CONNECT</h3>
-<div class="outline-text-3" id="text-org5d5c4ce">
+<div id="outline-container-orgb5d4503" class="outline-3">
+<h3 id="orgb5d4503">CONNECT</h3>
+<div class="outline-text-3" id="text-orgb5d4503">
 <div class="org-src-container">
 <pre class="src src-nil">[          ] SWIO &lt;-----&gt; SWIO [          ]
 [ WCHLINKE ] SWCK &lt;-----&gt; SWCK [ NRF52840 ]
@@ -214,9 +214,9 @@ USE WCHLINKE FLASH/DEBUG NRF52840
 </div>
 </div>
 </div>
-<div id="outline-container-org52a36c1" class="outline-3">
-<h3 id="org52a36c1">SWITCH WCHLINKE TO DAP MODE</h3>
-<div class="outline-text-3" id="text-org52a36c1">
+<div id="outline-container-orgbc2ee79" class="outline-3">
+<h3 id="orgbc2ee79">SWITCH WCHLINKE TO DAP MODE</h3>
+<div class="outline-text-3" id="text-orgbc2ee79">
 <p>
 <a href="https://github.com/ch32-rs/wlink">https://github.com/ch32-rs/wlink</a>
 </p>
@@ -227,9 +227,9 @@ USE WCHLINKE FLASH/DEBUG NRF52840
 </div>
 </div>
 </div>
-<div id="outline-container-org0fc8419" class="outline-3">
-<h3 id="org0fc8419">OPENCODE CONFIG FILE</h3>
-<div class="outline-text-3" id="text-org0fc8419">
+<div id="outline-container-org0506914" class="outline-3">
+<h3 id="org0506914">OPENCODE CONFIG FILE</h3>
+<div class="outline-text-3" id="text-org0506914">
 <p>
 wchlinke.cfg
 </p>
@@ -242,9 +242,9 @@ adapter speed 1000
 </div>
 </div>
 </div>
-<div id="outline-container-orgdae54c9" class="outline-3">
-<h3 id="orgdae54c9">USE PYOCD</h3>
-<div class="outline-text-3" id="text-orgdae54c9">
+<div id="outline-container-orgede4706" class="outline-3">
+<h3 id="orgede4706">USE PYOCD</h3>
+<div class="outline-text-3" id="text-orgede4706">
 <p>
 NRF CONNECT SDK ONLY SUPPORT JLINK AND PYOCD:
 </p>
@@ -263,9 +263,9 @@ DEBUG IS WORKING, WE CAN USE DEBUG RUN FIRMWARE:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb643f2" class="outline-3">
-<h3 id="orgdb643f2">USE OPENOCD</h3>
-<div class="outline-text-3" id="text-orgdb643f2">
+<div id="outline-container-orgb6948bc" class="outline-3">
+<h3 id="orgb6948bc">USE OPENOCD</h3>
+<div class="outline-text-3" id="text-orgb6948bc">
 <div class="org-src-container">
 <pre class="src src-shell">openocd-wch -f wchlinke.cfg -f target/nrf52.cfg
 </pre>
@@ -302,9 +302,9 @@ Info : Listening on port 3333 for gdb connections
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2795f2" class="outline-3">
-<h3 id="orgf2795f2">USE GDB CONNECT IT</h3>
-<div class="outline-text-3" id="text-orgf2795f2">
+<div id="outline-container-orgd10587b" class="outline-3">
+<h3 id="orgd10587b">USE GDB CONNECT IT</h3>
+<div class="outline-text-3" id="text-orgd10587b">
 <div class="org-src-container">
 <pre class="src src-nil">target remote localhost:3333
 </pre>

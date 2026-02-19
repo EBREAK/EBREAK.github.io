@@ -1,0 +1,32 @@
+* RPI 9FRONT SETUP
+
+2026-02-19
+
+** GENERATE LARGE SDCARD IMAGE
+
+MODIFY:
+
+https://git.9front.org/plan9front/9front/a3f7629993aa6e04dda726d7ea8b329b43b0cfce/sys/lib/dist/mkfile/f.html
+
+#+BEGIN_SRC
+  	fatfiles=(/env/config.txt /env/cmdline.txt $bootcode $kernels)
+	mb=1885	# storage vendors idea of 2GB
+	mk $target.$pid.disk
+	mv $target.$pid.disk $target
+#+END_SRC
+
+CHANGE 'mb=xxx' BY YOUR HAND
+
+** NTP
+
+#+BEGIN_SRC shell
+  aux/timesync -n -l NTPSERVER
+#+END_SRC
+
+** STARDICT
+
+I MAKE A SMALL STARDICT PROGRAM USE FOR OFFLINE WORD MEAN SEARCH:
+
+https://github.com/ebreak/9stardict
+
+
