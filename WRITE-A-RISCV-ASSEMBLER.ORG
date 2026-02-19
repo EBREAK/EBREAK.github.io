@@ -93,3 +93,15 @@ COMMAND:
 #+END_SRC
 
 
+** CB TYPE ENCODING
+
+#+BEGIN_SRC text
+  FEDCBA9876543210
+  2108432107621510
+  F  O  R  O    O
+  U  F  S  F    P
+  N  F  1  F    C
+  C  S     S    O
+  T  E     E    D
+  3  T     T    E
+#+END_SRC
