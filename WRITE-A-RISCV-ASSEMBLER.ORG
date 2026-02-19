@@ -84,12 +84,12 @@ COMMAND:
 #+BEGIN_SRC text
   FEDCBA9876543210
   210B498A67321510
-  F  O           O
-  U  F           P
-  N  F           C
-  C  S           O
-  T  E           D
-  3  T           E
+  F  O          O
+  U  F          P
+  N  F          C
+  C  S          O
+  T  E          D
+  3  T          E
 #+END_SRC
 
 
