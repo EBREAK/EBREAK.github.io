@@ -59,6 +59,13 @@ COMMAND:
   llvm-mc -triple=riscv32 -filetype=obj test.S -o a.out
 #+END_SRC
 
+GENERATE COMPRESSED INSTRUCTION, ADD INTO ASM FILE:
+
+#+BEGIN_SRC asm
+  	.option rv32ic
+#+END_SRC
+
+
 ** FAR CALL
 
 ** J TYPE ENCODING

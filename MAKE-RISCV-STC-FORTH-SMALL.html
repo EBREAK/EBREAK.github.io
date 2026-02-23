@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-19 周四 19:52 -->
+<!-- 2026-02-23 Mon 18:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -196,13 +196,13 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-orga4be57b" class="outline-2">
-<h2 id="orga4be57b">MAKE RISCV STC FORTH SMALL</h2>
-<div class="outline-text-2" id="text-orga4be57b">
+<div id="outline-container-org8440bc6" class="outline-2">
+<h2 id="org8440bc6">MAKE RISCV STC FORTH SMALL</h2>
+<div class="outline-text-2" id="text-org8440bc6">
 </div>
-<div id="outline-container-org7869ee9" class="outline-3">
-<h3 id="org7869ee9">REGISTER</h3>
-<div class="outline-text-3" id="text-org7869ee9">
+<div id="outline-container-org5d180f1" class="outline-3">
+<h3 id="org5d180f1">REGISTER</h3>
+<div class="outline-text-3" id="text-org5d180f1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -248,9 +248,9 @@
 </table>
 </div>
 </div>
-<div id="outline-container-orgc81f755" class="outline-3">
-<h3 id="orgc81f755">PPUSH</h3>
-<div class="outline-text-3" id="text-orgc81f755">
+<div id="outline-container-org04eb426" class="outline-3">
+<h3 id="org04eb426">PPUSH</h3>
+<div class="outline-text-3" id="text-org04eb426">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO PPUSH reg
         addi x9, x9, -4
@@ -274,9 +274,9 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-org1284c71" class="outline-3">
-<h3 id="org1284c71">PPOP</h3>
-<div class="outline-text-3" id="text-org1284c71">
+<div id="outline-container-orga0d228d" class="outline-3">
+<h3 id="orga0d228d">PPOP</h3>
+<div class="outline-text-3" id="text-orga0d228d">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO PPOP reg
         lw \reg, 0(x9)
@@ -301,9 +301,9 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-orga3b7b74" class="outline-3">
-<h3 id="orga3b7b74">RPUSH RPOP</h3>
-<div class="outline-text-3" id="text-orga3b7b74">
+<div id="outline-container-org7563e74" class="outline-3">
+<h3 id="org7563e74">RPUSH RPOP</h3>
+<div class="outline-text-3" id="text-org7563e74">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO RPUSH reg
         addi x8, x8, -4
@@ -318,9 +318,9 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc37785" class="outline-3">
-<h3 id="orgdc37785">LIT</h3>
-<div class="outline-text-3" id="text-orgdc37785">
+<div id="outline-container-orge7bc5b3" class="outline-3">
+<h3 id="orge7bc5b3">LIT</h3>
+<div class="outline-text-3" id="text-orge7bc5b3">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO LIT val
         PPUSH x15
@@ -343,9 +343,9 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf895e1a" class="outline-3">
-<h3 id="orgf895e1a">ZBRANCH</h3>
-<div class="outline-text-3" id="text-orgf895e1a">
+<div id="outline-container-orgc59e75c" class="outline-3">
+<h3 id="orgc59e75c">ZBRANCH</h3>
+<div class="outline-text-3" id="text-orgc59e75c">
 <div class="org-src-container">
 <pre class="src src-asm">  .MACRO ZBRANCH sym
           mv x14, x15
