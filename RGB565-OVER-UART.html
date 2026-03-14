@@ -3,11 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-23 Mon 18:35 -->
+<!-- 2026-03-14 Sat 20:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -196,22 +195,37 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org574b4d5" class="outline-2">
-<h2 id="org574b4d5">RGB565 OVER UART</h2>
-<div class="outline-text-2" id="text-org574b4d5">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf2b6016">1. RGB565 OVER UART</a>
+<ul>
+<li><a href="#orgc74a69f">1.1. CONNECT</a></li>
+<li><a href="#org095bc6c">1.2. PROTOCOL</a></li>
+<li><a href="#org1b2be08">1.3. LIMIT</a></li>
+<li><a href="#org80cd1c8">1.4. COMPRESS</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div id="outline-container-org0b766b0" class="outline-3">
-<h3 id="org0b766b0">CONNECT</h3>
-<div class="outline-text-3" id="text-org0b766b0">
+</div>
+<div id="outline-container-orgf2b6016" class="outline-2">
+<h2 id="orgf2b6016"><span class="section-number-2">1.</span> RGB565 OVER UART</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgc74a69f" class="outline-3">
+<h3 id="orgc74a69f"><span class="section-number-3">1.1.</span> CONNECT</h3>
+<div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-nil">[ SENDER ] UART TX ------------&gt; UART RX [ RECEIVER ]---[SCREEN]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org11fd296" class="outline-3">
-<h3 id="org11fd296">PROTOCOL</h3>
-<div class="outline-text-3" id="text-org11fd296">
+<div id="outline-container-org095bc6c" class="outline-3">
+<h3 id="org095bc6c"><span class="section-number-3">1.2.</span> PROTOCOL</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 USE SLIP:
 </p>
@@ -235,9 +249,9 @@ RECEIVER WILL COPY LCD DATA TO LCD FRAMEBUFFER + OFFSET
 </p>
 </div>
 </div>
-<div id="outline-container-org68404ad" class="outline-3">
-<h3 id="org68404ad">LIMIT</h3>
-<div class="outline-text-3" id="text-org68404ad">
+<div id="outline-container-org1b2be08" class="outline-3">
+<h3 id="org1b2be08"><span class="section-number-3">1.3.</span> LIMIT</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 HIGH SPEED UART NEED A STABLE CLOCK SOURCE
 </p>
@@ -247,9 +261,9 @@ WE NEED RUN SENDER IN LOOP, TO AVOID NOISE AND FIFO OVERFLOW
 </p>
 </div>
 </div>
-<div id="outline-container-org1963d8f" class="outline-3">
-<h3 id="org1963d8f">COMPRESS</h3>
-<div class="outline-text-3" id="text-org1963d8f">
+<div id="outline-container-org80cd1c8" class="outline-3">
+<h3 id="org80cd1c8"><span class="section-number-3">1.4.</span> COMPRESS</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
 I SUGGEST YOU USE LZ4 BLOCK FORMAT:
 </p>
@@ -268,6 +282,10 @@ USE lz4len CHECK THE DATA AND USE lz4cpy TO DECOMPRESS INTO FRAMEBUFFER, OR YOU 
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2026-03-14 Sat 20:52</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

@@ -62,7 +62,7 @@ COMMAND:
 GENERATE COMPRESSED INSTRUCTION, ADD INTO ASM FILE:
 
 #+BEGIN_SRC asm
-  	.option rv32ic
+  	.option arch,rv32ic
 #+END_SRC
 
 

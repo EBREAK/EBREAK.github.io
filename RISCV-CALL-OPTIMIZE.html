@@ -3,11 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-23 Mon 18:35 -->
+<!-- 2026-03-14 Sat 20:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
-<meta name="author" content="LuHui" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -196,13 +195,29 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="outline-container-org8679fb3" class="outline-2">
-<h2 id="org8679fb3">RISCV CALL OPTIMIZE</h2>
-<div class="outline-text-2" id="text-org8679fb3">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org760e3ac">1. RISCV CALL OPTIMIZE</a>
+<ul>
+<li><a href="#orga3e1db5">1.1. FAR CALL</a></li>
+<li><a href="#orga84a0de">1.2. NEARBY CALL</a></li>
+<li><a href="#org2e904d3">1.3. REGISTER RELATED CALL</a></li>
+<li><a href="#org56232dd">1.4. COMPRESSED NEARLY CALL</a></li>
+<li><a href="#org4e6e351">1.5. COMPRESSED REGISTER RELATED CALL</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div id="outline-container-org1ddc78c" class="outline-3">
-<h3 id="org1ddc78c">FAR CALL</h3>
-<div class="outline-text-3" id="text-org1ddc78c">
+</div>
+<div id="outline-container-org760e3ac" class="outline-2">
+<h2 id="org760e3ac"><span class="section-number-2">1.</span> RISCV CALL OPTIMIZE</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orga3e1db5" class="outline-3">
+<h3 id="orga3e1db5"><span class="section-number-3">1.1.</span> FAR CALL</h3>
+<div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: PC +-2GiB
 # NEED 8 BYTES
@@ -224,9 +239,9 @@ jalr x1, x1, offset[11:0]
 </div>
 </div>
 </div>
-<div id="outline-container-org83825f4" class="outline-3">
-<h3 id="org83825f4">NEARBY CALL</h3>
-<div class="outline-text-3" id="text-org83825f4">
+<div id="outline-container-orga84a0de" class="outline-3">
+<h3 id="orga84a0de"><span class="section-number-3">1.2.</span> NEARBY CALL</h3>
+<div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: PC +-1MiB
 # NEED 4 BYTES
@@ -235,9 +250,9 @@ jal x1, offset
 </div>
 </div>
 </div>
-<div id="outline-container-orgf2aeba5" class="outline-3">
-<h3 id="orgf2aeba5">REGISTER RELATED CALL</h3>
-<div class="outline-text-3" id="text-orgf2aeba5">
+<div id="outline-container-org2e904d3" class="outline-3">
+<h3 id="org2e904d3"><span class="section-number-3">1.3.</span> REGISTER RELATED CALL</h3>
+<div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: REG +-2KiB
 # NEED 4 BYTES
@@ -254,9 +269,9 @@ BUT GNU GAS IS NOT SUPPORT THIS ACTION, WE MUST WRITE OWN ASSEMBLER
 </p>
 </div>
 </div>
-<div id="outline-container-org80802b7" class="outline-3">
-<h3 id="org80802b7">COMPRESSED NEARLY CALL</h3>
-<div class="outline-text-3" id="text-org80802b7">
+<div id="outline-container-org56232dd" class="outline-3">
+<h3 id="org56232dd"><span class="section-number-3">1.4.</span> COMPRESSED NEARLY CALL</h3>
+<div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: PC +-2KiB
 # NEED 2 BYTES
@@ -265,9 +280,9 @@ c.jal (offset &lt;&lt; 1)
 </div>
 </div>
 </div>
-<div id="outline-container-orga4d2ece" class="outline-3">
-<h3 id="orga4d2ece">COMPRESSED REGISTER RELATED CALL</h3>
-<div class="outline-text-3" id="text-orga4d2ece">
+<div id="outline-container-org4e6e351" class="outline-3">
+<h3 id="org4e6e351"><span class="section-number-3">1.5.</span> COMPRESSED REGISTER RELATED CALL</h3>
+<div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-asm"># RANGE: REG +-0
 # NEED 2 BYTES
@@ -281,6 +296,10 @@ SAME WITH: 'JALR x1, reg, 0'
 </div>
 </div>
 </div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Created: 2026-03-14 Sat 20:52</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
