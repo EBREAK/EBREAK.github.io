@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-23 Mon 20:55 -->
+<!-- 2026-03-23 Mon 21:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -195,61 +195,106 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8ed69e6">1. USBFS MULTI EP PERFORMANCE</a>
+<ul>
+<li><a href="#org3c2a3d5">1.1. INTERRUPT TRANSFER USE SINGLE EP</a></li>
+<li><a href="#org43614ff">1.2. INTERRUPT TRANSFER USE MULTI EP:</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ed69e6" class="outline-2">
+<h2 id="org8ed69e6"><span class="section-number-2">1.</span> USBFS MULTI EP PERFORMANCE</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3c2a3d5" class="outline-3">
+<h3 id="org3c2a3d5"><span class="section-number-3">1.1.</span> INTERRUPT TRANSFER USE SINGLE EP</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-ME:
+OPERATING SYSTEM RATE LIMIT : 64KiB/s:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">1000 / 1ms(bInterval) = 1000Hz
+64(BYTE) * 1000Hz = 64KiB/s
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org43614ff" class="outline-3">
+<h3 id="org43614ff"><span class="section-number-3">1.2.</span> INTERRUPT TRANSFER USE MULTI EP:</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-nil">USB IF0 HID EP IN 0X81
+USB IF1 HID EP IN 0X82
+USB IF2 HID EP IN 0X83
+</pre>
+</div>
+
+<p>
+IF YOUR USB DEVICE(MCU/SOC) CAN PROC ALL EP IN REQEUST IN TIME:
 </p>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+MAX RATE IS :  64KiB/s * 3 = 192KiB/s
+</p>
+
+<div class="org-src-container">
+<pre class="src src-nil">USB HOST ------SOF-------&gt; BORDCAST
+USB HOST ----EP 0x81 IN REQ---&gt; USB DEVICE
+USB DEVICE ----ACK-------&gt; USB HOST
+USB HOST ----EP 0x82 IN REQ---&gt; USB DEVICE
+USB DEVICE ----ACK-------&gt; USB HOST
+USB HOST ----EP 0x83 IN REQ---&gt; USB DEVICE
+USB DEVICE ----ACK-------&gt; USB HOST
+.............
+USB HOST ------SOF-------&gt; BORDCAST
+</pre>
+</div>
+
+<p>
+IF YOUR USB DEVICE(MCU/SOC) CAN'T SOME EP IN REQEUST IN TIME:
 </p>
 
 <p>
-FORTH:
+MAX RATE IS : 64KiB/s * 2 = 128KiB/s
 </p>
 
-<p>
-<a href="MAKE-RISCV-STC-FORTH-SMALL.html">MAKE-RISCV-STC-FORTH-SMALL</a>
-</p>
+<div class="org-src-container">
+<pre class="src src-nil">USB HOST ------SOF-------&gt; BORDCAST
+USB HOST ----EP 0x81 IN REQ---&gt; USB DEVICE
+USB DEVICE ----ACK-------&gt; USB HOST
+USB HOST ----EP 0x82 IN REQ---&gt; USB DEVICE
+USB DEVICE ----NAK-------&gt; USB HOST
+USB HOST ----EP 0x83 IN REQ---&gt; USB DEVICE
+USB DEVICE ----ACK-------&gt; USB HOST
+.............
+USB HOST ------SOF-------&gt; BORDCAST
+</pre>
+</div>
+
 
 <p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
+WIRESHARK USBLL SNIFFER SAMPLE:
 </p>
 
-<p>
-<a href="WRITE-A-RISCV-ASSEMBLER.html">WRITE-A-RISCV-ASSEMBLER</a>
-</p>
 
-<p>
-MCU:
-</p>
 
-<p>
-<a href="USBFS-MULTI-EP-PERFORMANCE.html">USBFS-MULTI-EP-PERFORMANCE</a>
-</p>
-
-<p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
-</p>
-
-<p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
-</p>
-
-<p>
-<a href="WCHLINKE-AND-NRF52840.html">WCHLINKE-AND-NRF52840</a>
-</p>
-
-<p>
-PLAN9:
-</p>
-
-<p>
-<a href="RPI-9FRONT-SETUP.html">RPI-9FRONT-SETUP</a>
+<div id="orgdc8b080" class="figure">
+<p><img src="USBFS_MULTI_INT_EP_IN_1MS.png" alt="USBFS_MULTI_INT_EP_IN_1MS.png" />
 </p>
 </div>
+</div>
+</div>
+</div>
+</div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-23 Mon 20:55</p>
+<p class="date">Created: 2026-03-23 Mon 21:00</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
