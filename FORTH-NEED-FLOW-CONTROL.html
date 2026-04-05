@@ -6,7 +6,7 @@
 <!-- 2026-04-05 Sun 17:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -195,62 +195,65 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8fba28a">1. FORTH NEED FLOW CONTROL</a>
+<ul>
+<li><a href="#org0d8a8c8">1.1. WHY</a></li>
+<li><a href="#org4009378">1.2. UART HARDWARE FLOW CONTROL</a></li>
+<li><a href="#org90855fd">1.3. UART SOFTWARE FLOW CONTROL</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8fba28a" class="outline-2">
+<h2 id="org8fba28a"><span class="section-number-2">1.</span> FORTH NEED FLOW CONTROL</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org0d8a8c8" class="outline-3">
+<h3 id="org0d8a8c8"><span class="section-number-3">1.1.</span> WHY</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-ME:
+FORTH ON MCU HAVEN'T LARGE RX FIFO ON UART, IT WILL LOST BYTE WHEN MCU IS BUSY.
+</p>
+</div>
+</div>
+<div id="outline-container-org4009378" class="outline-3">
+<h3 id="org4009378"><span class="section-number-3">1.2.</span> UART HARDWARE FLOW CONTROL</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+UART HARDWARE FLOW CONTROL IS THE SIMPLEST SOLUTION
 </p>
 
 <p>
-<a href="ABOUT.html">ABOUT</a>
+YOU MUST FIND A USB TO SERIAL CHIP THAT IMPLEMENTS CORRECT CTS/RTS FLOW CONTROL TIMING.
 </p>
 
 <p>
-FORTH:
+FT232 IS NOT SUITABLE, IT CAN'T STOP TRANSMIT IMMEDIATELY WHEN CTS IS HIGH
 </p>
 
 <p>
-<a href="FORTH-NEED-FLOW-CONTROL.html">FORTH-NEED-FLOW-CONTROL</a>
+CH343 LINUX DRIVER IS BAD, IT WILL BLOCK IOCTL WHEN YOU ENABLE HARDWARE FLOW CONTROL
 </p>
 
 <p>
-<a href="MAKE-RISCV-STC-FORTH-SMALL.html">MAKE-RISCV-STC-FORTH-SMALL</a>
+I MADE A USB TO SERIAL TOOL USING CH582, IT HAS CORRECT FLOW CONTROL (IN UART IP) : <a href="https://github.com/ebreak/ch582-usb-bridge">https://github.com/ebreak/ch582-usb-bridge</a>
 </p>
-
+</div>
+</div>
+<div id="outline-container-org90855fd" class="outline-3">
+<h3 id="org90855fd"><span class="section-number-3">1.3.</span> UART SOFTWARE FLOW CONTROL</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
+TODO
 </p>
-
-<p>
-<a href="WRITE-A-RISCV-ASSEMBLER.html">WRITE-A-RISCV-ASSEMBLER</a>
-</p>
-
-<p>
-MCU:
-</p>
-
-<p>
-<a href="USBFS-MULTI-EP-PERFORMANCE.html">USBFS-MULTI-EP-PERFORMANCE</a>
-</p>
-
-<p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
-</p>
-
-<p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
-</p>
-
-<p>
-<a href="WCHLINKE-AND-NRF52840.html">WCHLINKE-AND-NRF52840</a>
-</p>
-
-<p>
-PLAN9:
-</p>
-
-<p>
-<a href="RPI-9FRONT-SETUP.html">RPI-9FRONT-SETUP</a>
-</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Created: 2026-04-05 Sun 17:33</p>
