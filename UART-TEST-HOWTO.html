@@ -6,7 +6,7 @@
 <!-- 2026-04-13 Mon 21:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>&lrm;</title>
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -195,66 +195,82 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5b42c20">1. UART TEST HOW TO</a>
+<ul>
+<li><a href="#org0c27938">1.1. HALF-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</a></li>
+<li><a href="#org2740969">1.2. FULL-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</a></li>
+<li><a href="#org06089bb">1.3. SERIAL TEST WITH HARDWARE FLOW CONTROL</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5b42c20" class="outline-2">
+<h2 id="org5b42c20"><span class="section-number-2">1.</span> UART TEST HOW TO</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-ME:
+USE KERMIT TEST SERIAL PORT
+</p>
+</div>
+<div id="outline-container-org0c27938" class="outline-3">
+<h3 id="org0c27938"><span class="section-number-3">1.1.</span> HALF-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+PARAM:
 </p>
 
+<div class="org-src-container">
+<pre class="src src-text">set line /dev/XXXX
+set speed NNNNN
+set carrier-watch off
+fast
+set window-size 1
+send /calibrate:10000
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2740969" class="outline-3">
+<h3 id="org2740969"><span class="section-number-3">1.2.</span> FULL-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
-<a href="ABOUT.html">ABOUT</a>
+PARAM:
 </p>
 
+<div class="org-src-container">
+<pre class="src src-text">set line /dev/XXXX
+set speed NNNNN
+set carrier-watch off
+fast
+set window-size 8
+send /calibrate:10000
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org06089bb" class="outline-3">
+<h3 id="org06089bb"><span class="section-number-3">1.3.</span> SERIAL TEST WITH HARDWARE FLOW CONTROL</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
-FORTH:
+PARAM:
 </p>
 
-<p>
-<a href="FORTH-NEED-FLOW-CONTROL.html">FORTH-NEED-FLOW-CONTROL</a>
-</p>
-
-<p>
-<a href="MAKE-RISCV-STC-FORTH-SMALL.html">MAKE-RISCV-STC-FORTH-SMALL</a>
-</p>
-
-<p>
-<a href="RISCV-CALL-OPTIMIZE.html">RISCV-CALL-OPTIMIZE</a>
-</p>
-
-<p>
-<a href="WRITE-A-RISCV-ASSEMBLER.html">WRITE-A-RISCV-ASSEMBLER</a>
-</p>
-
-<p>
-MCU:
-</p>
-
-<p>
-<a href="UART-TEST-HOW-TO.html">UART-TEST-HOW-TO</a>
-</p>
-
-<p>
-<a href="USBFS-MULTI-EP-PERFORMANCE.html">USBFS-MULTI-EP-PERFORMANCE</a>
-</p>
-
-<p>
-<a href="EMACS-AND-ESP-IDF.html">EMACS-AND-ESP-IDF</a>
-</p>
-
-<p>
-<a href="RGB565-OVER-UART.html">RGB565-OVER-UART</a>
-</p>
-
-<p>
-<a href="WCHLINKE-AND-NRF52840.html">WCHLINKE-AND-NRF52840</a>
-</p>
-
-<p>
-PLAN9:
-</p>
-
-<p>
-<a href="RPI-9FRONT-SETUP.html">RPI-9FRONT-SETUP</a>
-</p>
+<div class="org-src-container">
+<pre class="src src-text">set line /dev/XXXX
+set speed NNNNN
+set carrier-watch off
+fast
+set streaming on
+send /calibrate:10000
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Created: 2026-04-13 Mon 21:25</p>

@@ -1,0 +1,43 @@
+* UART TEST HOW TO
+
+USE KERMIT TEST SERIAL PORT
+
+** HALF-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL
+
+PARAM:
+
+#+BEGIN_SRC text
+  set line /dev/XXXX
+  set speed NNNNN
+  set carrier-watch off
+  fast
+  set window-size 1
+  send /calibrate:10000
+#+END_SRC
+
+** FULL-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL
+
+PARAM:
+
+#+BEGIN_SRC text
+  set line /dev/XXXX
+  set speed NNNNN
+  set carrier-watch off
+  fast
+  set window-size 8
+  send /calibrate:10000
+#+END_SRC
+
+** SERIAL TEST WITH HARDWARE FLOW CONTROL
+
+PARAM:
+
+#+BEGIN_SRC text
+  set line /dev/XXXX
+  set speed NNNNN
+  set carrier-watch off
+  fast
+  set streaming on
+  send /calibrate:10000
+#+END_SRC
+
