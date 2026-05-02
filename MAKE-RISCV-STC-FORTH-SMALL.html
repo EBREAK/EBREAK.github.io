@@ -3,10 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-14 Sat 20:52 -->
+<!-- 2026-05-02 Sat 22:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
+<meta name="author" content="human" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -199,25 +200,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge420951">1. MAKE RISCV STC FORTH SMALL</a>
+<li><a href="#orgffec9cd">1. MAKE RISCV STC FORTH SMALL</a>
 <ul>
-<li><a href="#orge1b193e">1.1. REGISTER</a></li>
-<li><a href="#org4c18a5d">1.2. PPUSH</a></li>
-<li><a href="#org69f7966">1.3. PPOP</a></li>
-<li><a href="#org9aae905">1.4. RPUSH RPOP</a></li>
-<li><a href="#org923f216">1.5. LIT</a></li>
-<li><a href="#orgf82c5bb">1.6. ZBRANCH</a></li>
+<li><a href="#orgebe5f1c">1.1. REGISTER</a></li>
+<li><a href="#org5a6c483">1.2. PPUSH</a></li>
+<li><a href="#org101653a">1.3. PPOP</a></li>
+<li><a href="#org4aa04c6">1.4. RPUSH RPOP</a></li>
+<li><a href="#org6bc8f54">1.5. LIT</a></li>
+<li><a href="#orgcd53d5c">1.6. ZBRANCH</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge420951" class="outline-2">
-<h2 id="orge420951"><span class="section-number-2">1.</span> MAKE RISCV STC FORTH SMALL</h2>
+<div id="outline-container-orgffec9cd" class="outline-2">
+<h2 id="orgffec9cd"><span class="section-number-2">1.</span> MAKE RISCV STC FORTH SMALL</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge1b193e" class="outline-3">
-<h3 id="orge1b193e"><span class="section-number-3">1.1.</span> REGISTER</h3>
+<div id="outline-container-orgebe5f1c" class="outline-3">
+<h3 id="orgebe5f1c"><span class="section-number-3">1.1.</span> REGISTER</h3>
 <div class="outline-text-3" id="text-1-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -264,8 +265,8 @@
 </table>
 </div>
 </div>
-<div id="outline-container-org4c18a5d" class="outline-3">
-<h3 id="org4c18a5d"><span class="section-number-3">1.2.</span> PPUSH</h3>
+<div id="outline-container-org5a6c483" class="outline-3">
+<h3 id="org5a6c483"><span class="section-number-3">1.2.</span> PPUSH</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO PPUSH reg
@@ -290,8 +291,8 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-org69f7966" class="outline-3">
-<h3 id="org69f7966"><span class="section-number-3">1.3.</span> PPOP</h3>
+<div id="outline-container-org101653a" class="outline-3">
+<h3 id="org101653a"><span class="section-number-3">1.3.</span> PPOP</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO PPOP reg
@@ -317,8 +318,8 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-org9aae905" class="outline-3">
-<h3 id="org9aae905"><span class="section-number-3">1.4.</span> RPUSH RPOP</h3>
+<div id="outline-container-org4aa04c6" class="outline-3">
+<h3 id="org4aa04c6"><span class="section-number-3">1.4.</span> RPUSH RPOP</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO RPUSH reg
@@ -334,8 +335,8 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-org923f216" class="outline-3">
-<h3 id="org923f216"><span class="section-number-3">1.5.</span> LIT</h3>
+<div id="outline-container-org6bc8f54" class="outline-3">
+<h3 id="org6bc8f54"><span class="section-number-3">1.5.</span> LIT</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-asm">.MACRO LIT val
@@ -359,8 +360,8 @@ DISASM:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf82c5bb" class="outline-3">
-<h3 id="orgf82c5bb"><span class="section-number-3">1.6.</span> ZBRANCH</h3>
+<div id="outline-container-orgcd53d5c" class="outline-3">
+<h3 id="orgcd53d5c"><span class="section-number-3">1.6.</span> ZBRANCH</h3>
 <div class="outline-text-3" id="text-1-6">
 <div class="org-src-container">
 <pre class="src src-asm">  .MACRO ZBRANCH sym
@@ -391,7 +392,8 @@ DISASM:
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2026-03-14 Sat 20:52</p>
+<p class="author">Author: human</p>
+<p class="date">Created: 2026-05-02 Sat 22:54</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

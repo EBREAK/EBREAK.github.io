@@ -200,75 +200,71 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org52e9317">1. UART TEST HOW TO</a>
+<li><a href="#org61a2821">1. OPENBSD UGEN PERFORMANCE</a>
 <ul>
-<li><a href="#org168413f">1.1. HALF-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</a></li>
-<li><a href="#org58f5244">1.2. FULL-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</a></li>
-<li><a href="#org6ef9d83">1.3. SERIAL TEST WITH HARDWARE FLOW CONTROL</a></li>
+<li><a href="#orgaceb78d">1.1. USBHS TEST:</a></li>
+<li><a href="#org48602cb">1.2. WHY</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org52e9317" class="outline-2">
-<h2 id="org52e9317"><span class="section-number-2">1.</span> UART TEST HOW TO</h2>
+<div id="outline-container-org61a2821" class="outline-2">
+<h2 id="org61a2821"><span class="section-number-2">1.</span> OPENBSD UGEN PERFORMANCE</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-USE KERMIT TEST SERIAL PORT
+VERY SLOW
 </p>
 </div>
-<div id="outline-container-org168413f" class="outline-3">
-<h3 id="org168413f"><span class="section-number-3">1.1.</span> HALF-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</h3>
+<div id="outline-container-orgaceb78d" class="outline-3">
+<h3 id="orgaceb78d"><span class="section-number-3">1.1.</span> USBHS TEST:</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-PARAM:
+USE THIS TOOL TEST: <a href="https://github.com/ataradov/usb-sniffer">https://github.com/ataradov/usb-sniffer</a>
 </p>
 
 <div class="org-src-container">
-<pre class="src src-text">set line /dev/XXXX
-set speed NNNNN
-set carrier-watch off
-fast
-set window-size 1
-send /calibrate:10000
+<pre class="src src-nil">$ ./usb_sniffer --test
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.97 MB/s
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.97 MB/s
+Transfer rate:  7.97 MB/s
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.97 MB/s
+Transfer rate:  7.98 MB/s
+Transfer rate:  7.98 MB/s
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org58f5244" class="outline-3">
-<h3 id="org58f5244"><span class="section-number-3">1.2.</span> FULL-DUPLEX SERIAL TEST WITHOUT FLOW CONTROL</h3>
+<div id="outline-container-org48602cb" class="outline-3">
+<h3 id="org48602cb"><span class="section-number-3">1.2.</span> WHY</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-PARAM:
+libusb/libusb/os/openbsd<sub>usb.c</sub>:688
 </p>
 
 <div class="org-src-container">
-<pre class="src src-text">set line /dev/XXXX
-set speed NNNNN
-set carrier-watch off
-fast
-set window-size 8
-send /calibrate:10000
+<pre class="src src-c">if (IS_XFERIN(transfer)) {
+        if ((transfer-&gt;flags &amp; LIBUSB_TRANSFER_SHORT_NOT_OK) == 0)
+                if (ioctl(fd, USB_SET_SHORT_XFER, &amp;nr) &lt; 0)
+                        return _errno_to_libusb(errno);
+
+        nr = read(fd, transfer-&gt;buffer, transfer-&gt;length);
+} else {
+        nr = write(fd, transfer-&gt;buffer, transfer-&gt;length);
+}
+
 </pre>
 </div>
-</div>
-</div>
-<div id="outline-container-org6ef9d83" class="outline-3">
-<h3 id="org6ef9d83"><span class="section-number-3">1.3.</span> SERIAL TEST WITH HARDWARE FLOW CONTROL</h3>
-<div class="outline-text-3" id="text-1-3">
+
 <p>
-PARAM:
+NOT SUPPORT LINUX URB STYLE QUEUE
 </p>
-
-<div class="org-src-container">
-<pre class="src src-text">set line /dev/XXXX
-set speed NNNNN
-set carrier-watch off
-fast
-set streaming on
-send /calibrate:10000
-</pre>
-</div>
 </div>
 </div>
 </div>
